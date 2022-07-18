@@ -98,7 +98,7 @@ class TwoLayerNet(object):
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         F, cache1 = affine_relu_forward(X, self.params['W1'], self.params['b1'])
-        scores, cache2 = affine_relu_forward(F, self.params['W2'], self.params['b2'])
+        scores, cache2 = affine_forward(F, self.params['W2'], self.params['b2'])
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
@@ -126,7 +126,7 @@ class TwoLayerNet(object):
         loss += 0.5 * self.reg * np.sum(self.params['W1'] * self.params['W1'])\
               + 0.5 * self.reg * np.sum(self.params['W2'] * self.params['W2'])
         
-        dx2, dw2, db2 = affine_relu_backward(d_up, cache2)
+        dx2, dw2, db2 = affine_backward(d_up, cache2)
         dx1, dw1, db1 = affine_relu_backward(dx2, cache1)
 
         dw2 += self.reg * self.params['W2']
